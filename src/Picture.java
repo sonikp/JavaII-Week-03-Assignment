@@ -141,7 +141,7 @@ public class Picture extends SimplePicture
 		 value = pixel.getRed();
 		 //System.out.print(value + " \t");
 
-		 // change the value to 1.3 times what it was
+		 // change the value to a submitted factor, x times what it was
 		 value = (int)(value * increaseAmount);
 		 //System.out.print(value + " \n");
 		 
@@ -174,7 +174,7 @@ public class Picture extends SimplePicture
 		  // get the current pixel
 		 value = pixelArray[i].getGreen();
 		 
-		 // set red 1.3 * what it was
+		 // set green 1.3 * what it was
 		 pixelArray[i].setGreen((int)(value * 1.3));
 
 	  }
@@ -256,7 +256,7 @@ public class Picture extends SimplePicture
  		  // get the current pixel
  		 value = pixelArray[i].getBlue();
  		 
- 		 // set green by whatever factor was submitted by user 
+ 		 // set blue by whatever factor was submitted by user 
  		 pixelArray[i].setBlue((int)(value * increaseAmount));
 
  	  }
@@ -288,7 +288,7 @@ public class Picture extends SimplePicture
 	  int blurAreaWidth = blurWidth;
 	  int blurAreaHeight = blurHeight;
 	  
-	  // error checking, and notification only
+	  // error checking, notification only
 	  if ( blurAreaWidth > this.getWidth() || blurAreaHeight > this.getHeight() )
 	  {
 		  System.out.println("\n\n ****The dimensions you selected "
@@ -440,12 +440,12 @@ public class Picture extends SimplePicture
 	  System.out.println(sourcePicture);
 	  sourcePicture.explore();				// show's original picture
 	  
-	  /*
+	  
 	  // task 1: increase red
 	  sourcePicture.increaseRed();			// original text book method to increase by 30%
 	  sourcePicture.increaseRed(30);		// task 2: enhanced method to allow use to submit an increased amount.
 	  sourcePicture.explore();
-	  */
+	  
 	  
 	  /*
 	  // task 3: increase green
@@ -468,11 +468,11 @@ public class Picture extends SimplePicture
 	  sourcePicture.explore();								
 	  */
 	  
-	  
+	  /*
 	  // task 8: do something interesting
 	  sourcePicture.mirrorClockface();
 	  sourcePicture.explore();
-	  
+	  */
   }
   
 } // this } is the end of class Picture, put all new methods before this
