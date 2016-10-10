@@ -113,6 +113,35 @@ public class Picture extends SimplePicture
 	  }
   }
   
+  public void increaseRed(Pixel[] pixelArray)
+  {
+	  Pixel pixel = null;
+	  int value = 0;
+	  int index = 0;
+	  
+	  // loop through all pixels
+	  while ( index < pixelArray.length)
+	  {
+		  // get the current pixel
+		 pixel = pixelArray[index];
+		 
+		 // get the value
+		 value = pixel.getRed();
+		 
+		 // change the value to 1.3 times what it was
+		 value = (int)(value * 1.8);
+		 
+		 // set the pixel value to 1.3 times what it was
+		 pixel.setRed(value);
+		 
+		 // debug
+		 //System.out.println("increaseRed " + index + " \t" + pixelArray[index]  );
+		 
+		 // increment counter by 1
+		 index++;
+	  }
+  }
+  
   /*
    * Increase Red: Overloaded method, increase by selected % amount.
    * 
@@ -180,6 +209,23 @@ public class Picture extends SimplePicture
 	  }
  }
   
+  public void increaseGreen(Pixel[] pixelArray)
+  {
+ 	  //Pixel[] pixelArray = this.getPixels();
+ 	  int value = 0;
+ 	
+ 	  // loop through the pixels
+ 	  for ( int i = 0; i < pixelArray.length; i++)
+ 	  {
+ 		  // get the current pixel
+ 		 value = pixelArray[i].getGreen();
+ 		 
+ 		 // set green 1.3 * what it was
+ 		 pixelArray[i].setGreen((int)(value * 1.8));
+
+ 	  }
+  }
+  
   /*
    * Increase Green: Overloaded method, increase by selected % amount.
    * 
@@ -232,6 +278,25 @@ public class Picture extends SimplePicture
 
 	  }
  }
+  
+  public void increaseBlue(Pixel[] pixelArray)
+  {
+ 	  //Pixel[] pixelArray = this.getPixels();
+ 	  int value = 0;
+ 	
+ 	  // loop through the pixels
+ 	  for ( int i = 0; i < pixelArray.length; i++)
+ 	  {
+ 		  // get the current pixel
+ 		 value = pixelArray[i].getBlue();
+ 		 
+ 		 // set blue 1.3 * what it was
+ 		 pixelArray[i].setBlue((int)(value * 1.8));
+
+ 	  }
+  }
+  
+  
   
   /*
    * Increase Blue: Overloaded method, increase by selected % amount.
@@ -416,6 +481,50 @@ public class Picture extends SimplePicture
   
   
   
+  public Pixel[] mirrorClockface(int offset)
+  {
+	  // Clockface dimensions : 169,58 to 241,126
+	  int top = 58;		// y-Axis
+	  int bottom = 126;	// y-Axis  
+	  int left = 169;	//x-Axis
+	  int right = 241;	//x-Axis
+	  int height = (bottom - top) * 2 + 118; // bottom - top; // 126-58 = 68 + offset = 118
+	  
+	  System.out.println(height);
+	  
+	  Pixel topPixel = null;
+	  Pixel bottomPixel = null;
+
+	  
+	  Pixel[] returnPixel = new Pixel[(right - left) * (bottom - top)]; // size;
+	  int index = 0;
+
+	  // loop through columns
+	  for ( int x = left; x < right; x++) //
+	  {
+		  // loop through rows
+		  for ( int y = top; y < bottom; y++) // 
+		  {
+			  
+			  // copy pixels to 
+			  topPixel = getPixel(x,y); 
+			  
+			  // clock-left
+			  bottomPixel = getPixel((x + offset), height - 1 - y); 	
+			  bottomPixel.setColor(topPixel.getColor());
+			  returnPixel[index] = bottomPixel;	//index++ :: ++ is post increment
+			  
+			  // debug code
+			  // System.out.println("mirror " + index + " \t" + returnPixel[index]  );
+			  index++;
+			  
+		  }
+	  }
+	  return returnPixel;
+  }
+  
+  
+  
   /**
    * Method to return a string with information about this picture.
    * @return a string with information about the picture such as fileName,
@@ -435,17 +544,18 @@ public class Picture extends SimplePicture
 
      
 	  // clock-tower.jpg represents the red color changes pretty well
-	  String fileName = FileChooser.getMediaPath("clock-tower.jpg");
+	  //String fileName = FileChooser.getMediaPath("clock-tower.jpg");
+	  String fileName = "/Users/mfloerchinger/Documents/z.JavaProgramming/UCSD/Java II/CourseCD/mediasources/clock-tower.jpg";
 	  Picture sourcePicture = new Picture(fileName);
 	  System.out.println(sourcePicture);
 	  sourcePicture.explore();				// show's original picture
 	  
-	  
+	  /*
 	  // task 1: increase red
 	  sourcePicture.increaseRed();			// original text book method to increase by 30%
 	  sourcePicture.increaseRed(30);		// task 2: enhanced method to allow use to submit an increased amount.
 	  sourcePicture.explore();
-	  
+	  */
 	  
 	  /*
 	  // task 3: increase green
@@ -468,11 +578,24 @@ public class Picture extends SimplePicture
 	  sourcePicture.explore();								
 	  */
 	  
-	  /*
+	  
 	  // task 8: do something interesting
-	  sourcePicture.mirrorClockface();
+	  /*
+	   * Ok, this didn't work exactly as I had thought, I had to created other methods that took arrays
+	   * but it was a worthy exercise and I am totally stoked to have learnt something new.
+	   * 
+	   */
+	  Pixel[] pixArr = sourcePicture.mirrorClockface(72);
+	  sourcePicture.increaseRed( pixArr );
+	  
+	  Pixel[] pixArr1 = sourcePicture.mirrorClockface(0);
+	  sourcePicture.increaseGreen( pixArr1 );
+	  
+	  Pixel[] pixArr2 = sourcePicture.mirrorClockface(-72);
+	  sourcePicture.increaseBlue( pixArr2 );
+
 	  sourcePicture.explore();
-	  */
+	  
   }
   
 } // this } is the end of class Picture, put all new methods before this
