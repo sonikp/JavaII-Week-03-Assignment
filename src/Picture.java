@@ -7,7 +7,7 @@ import java.util.*;
 import java.util.List; // resolves problem with java.awt.List and java.util.List
 
 /*
- * Assignment 3, Michael Floerchinger
+ * Assignment 3, 
  * 
  * This is a fresh copy of Picture.java created specifically for Assignment3.
  * 
