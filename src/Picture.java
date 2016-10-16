@@ -544,8 +544,7 @@ public class Picture extends SimplePicture
 
      
 	  // clock-tower.jpg represents the red color changes pretty well
-	  //String fileName = FileChooser.getMediaPath("clock-tower.jpg");
-	  String fileName = "/Users/mfloerchinger/Documents/z.JavaProgramming/UCSD/Java II/CourseCD/mediasources/clock-tower.jpg";
+	  String fileName = FileChooser.getMediaPath("clock-tower.jpg");
 	  Picture sourcePicture = new Picture(fileName);
 	  System.out.println(sourcePicture);
 	  sourcePicture.explore();				// show's original picture
